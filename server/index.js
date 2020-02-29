@@ -1,0 +1,25 @@
+const express = require('express');
+const morgan = require('morgan');
+const client = require('../database/index.js');
+
+const PORT = 3000;
+const app = express();
+
+app.use(morgan('dev'));
+app.use(express.json());
+
+app.get('/api/quotes', (req, res) => {
+  client.db('mvp').collection('quotes').find({}).toArray()
+    .then((quotes) => res.send(quotes))
+    .catch(() => res.send(404));
+});
+
+app.post('/api/quotes', (req, res) => {
+  client.db('mvp').collection('quotes').insertOne({ quote: req.body.quote })
+    .then((response) => res.send(response))
+    .catch(() => res.send(404));
+});
+
+
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
