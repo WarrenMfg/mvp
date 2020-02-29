@@ -1,4 +1,7 @@
 import React from 'react';
+import { newId } from '../utils.js';
+import QuoteDisplayRandom from './QuoteDisplayRandom.jsx';
+import QuoteAddNew from './QuoteAddNew.jsx';
 
 
 class App extends React.Component {
@@ -22,9 +25,9 @@ class App extends React.Component {
     return (
       <div>
         {/* <Spotify /> */}
-        {/* <QuoteDisplayRandom />
-        <QuoteAddNew />
-        <QuotesContainer /> */}
+        <QuoteDisplayRandom quotes={this.state.quotes} />
+        <QuoteAddNew newId={ newId } />
+        {/* <QuotesContainer /> */}
       </div>
 
     );

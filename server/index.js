@@ -24,6 +24,10 @@ app.post('/api/quotes', (req, res) => {
     .catch(() => res.send(404));
 });
 
+app.put('/api/quotes', (req, res) => {
+  // client.db()
+});
+
 
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
