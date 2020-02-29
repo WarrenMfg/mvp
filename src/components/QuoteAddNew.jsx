@@ -22,7 +22,21 @@ class QuoteAddNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     // POST
-    // add newId and date now
+    if (this.state.quote && this.state.author && this.state.contributor) {
+      fetch('/api/quotes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          quote: this.state.quote,
+          author: this.state.author,
+          contributor: this.state.contributor,
+          dateAdded: new Date().toDateString(),
+          dateModified: ''
+        })
+      });
+    }
 
     this.setState({
       quote: '',

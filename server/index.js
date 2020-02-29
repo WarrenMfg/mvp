@@ -19,7 +19,14 @@ app.get('/api/quotes', (req, res) => {
 });
 
 app.post('/api/quotes', (req, res) => {
-  client.db('mvp').collection('quotes').insertOne({ quote: req.body.quote })
+  const { quote, author, contributor, dateAdded, dateModified } = req.body;
+  client.db('mvp').collection('quotes').insertOne({
+    quote,
+    author,
+    contributor,
+    dateAdded,
+    dateModified
+  })
     .then((response) => res.send(response))
     .catch(() => res.send(404));
 });
