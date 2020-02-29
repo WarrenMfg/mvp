@@ -1,12 +1,16 @@
 const express = require('express');
 const morgan = require('morgan');
 const client = require('../database/index.js');
+const path = require('path');
 
 const PORT = 3000;
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
+
+
 
 app.get('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').find({}).toArray()
