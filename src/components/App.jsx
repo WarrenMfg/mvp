@@ -9,11 +9,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       quotes: [],
-      random: ''
+      random: {},
+      masterEditMode: false
     };
 
     this.updateQuotes = this.updateQuotes.bind(this);
-    this.handleEditRandom = this.handleEditRandom.bind(this);
+    this.handleRandomPut = this.handleRandomPut.bind(this);
+    this.handleQuotePut = this.handleQuotePut.bind(this);
+    this.toggleMasterEditMode = this.toggleMasterEditMode.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +29,10 @@ class App extends React.Component {
       .catch((err) => console.log('error at componentDidMount fetch', err));
   }
 
+  toggleMasterEditMode() {
+    this.setState((prevState) => ({ masterEditMode: !prevState.masterEditMode }));
+  }
+
   updateQuotes(newQuote) {
     this.setState((prevState) => {
       prevState.quotes.push(newQuote);
@@ -35,7 +42,7 @@ class App extends React.Component {
     });
   }
 
-  handleEditRandom(updatedQuote) {
+  handleRandomPut(updatedQuote) {
     fetch('/api/quotes', {
       method: 'PUT',
       headers: {
@@ -45,7 +52,32 @@ class App extends React.Component {
     })
       .then((dbUpdatedQuote) => dbUpdatedQuote.json())
       .then((updatedRandom) => this.setState({random: updatedRandom.value}))
-      .catch((err) => console.log('error in App.jsx handleEdit', err));
+      .catch((err) => console.log('error in App.jsx handlePut', err));
+  }
+
+  handleQuotePut(updatedQuote) {
+    fetch('/api/quotes', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedQuote)
+    })
+      .then((dbUpdatedQuote) => dbUpdatedQuote.json())
+      .then((updatedQuote) => {
+
+        this.setState((prevState) => {
+          let index = prevState.quotes.findIndex((quote) => quote._id === updatedQuote.value._id);
+          prevState.quotes[index] = updatedQuote.value;
+
+          if (prevState.random._id === updatedQuote.value._id) {
+            return { quotes: prevState.quotes, random: updatedQuote.value };
+          } else {
+            return { quotes: prevState.quotes };
+          }
+        });
+      })
+      .catch((err) => console.log('error in App.jsx handlePut', err));
   }
 
   render() {
@@ -53,8 +85,18 @@ class App extends React.Component {
       <div>
         {/* <Spotify /> */}
         <QuoteAddNew updateQuotes={this.updateQuotes} />
-        <QuoteDisplayRandom quote={this.state.random} handleEditRandom={this.handleEditRandom} />
-        <QuotesContainer quotes={this.state.quotes} handleEdit={this.handleEdit} />
+        <QuoteDisplayRandom
+          quote={this.state.random}
+          handleRandomPut={this.handleRandomPut}
+          masterEditMode={this.state.masterEditMode}
+          toggleMasterEditMode={this.toggleMasterEditMode}
+        />
+        <QuotesContainer
+          quotes={this.state.quotes}
+          handleQuotePut={this.handleQuotePut}
+          masterEditMode={this.state.masterEditMode}
+          toggleMasterEditMode={this.toggleMasterEditMode}
+        />
       </div>
 
     );

@@ -17,7 +17,9 @@ class QuoteDisplayRandom extends React.Component {
   }
 
   toggleEditMode() {
-    if (this.state.editMode === false) { // will be changed to true
+    if (!this.state.editMode && !this.props.masterEditMode) {
+      this.props.toggleMasterEditMode();
+
       this.setState({
         editMode: true,
         quote: this.props.quote.quote,
@@ -25,8 +27,6 @@ class QuoteDisplayRandom extends React.Component {
         student: this.props.quote.student,
         cohort: this.props.quote.cohort
       });
-    } else {
-      this.setState({ editMode: false }); // is this needed?
     }
   }
 
@@ -50,7 +50,7 @@ class QuoteDisplayRandom extends React.Component {
         dateModified: new Date().toDateString()
       };
 
-      this.props.handleEditRandom([updatedQuote, this.props.quote._id]);
+      this.props.handleRandomPut([updatedQuote, this.props.quote._id]); // PUT
 
       this.setState({
         editMode: false,
@@ -59,6 +59,8 @@ class QuoteDisplayRandom extends React.Component {
         student: '',
         cohort: ''
       });
+
+      this.props.toggleMasterEditMode();
     }
   }
 
@@ -77,7 +79,7 @@ class QuoteDisplayRandom extends React.Component {
       );
 
     } else if (this.props.quote && this.state.editMode) {
-      const { _id, quote, author, student, cohort, dateAdded, dateModified } = this.props.quote;
+      const { quote, author, student, cohort, dateAdded, dateModified } = this.props.quote;
 
       return (
         <form onSubmit={this.handleSubmit}>
