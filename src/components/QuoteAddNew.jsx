@@ -22,7 +22,7 @@ class QuoteAddNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // POST
+
     if (this.state.quote && this.state.author && this.state.student && this.state.cohort) {
       fetch('/api/quotes', {
         method: 'POST',

@@ -13,6 +13,7 @@ class App extends React.Component {
     };
 
     this.updateQuotes = this.updateQuotes.bind(this);
+    this.handleEditRandom = this.handleEditRandom.bind(this);
   }
 
   componentDidMount() {
@@ -34,13 +35,26 @@ class App extends React.Component {
     });
   }
 
+  handleEditRandom(updatedQuote) {
+    fetch('/api/quotes', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedQuote)
+    })
+      .then((dbUpdatedQuote) => dbUpdatedQuote.json())
+      .then((updatedRandom) => this.setState({random: updatedRandom.value}))
+      .catch((err) => console.log('error in App.jsx handleEdit', err));
+  }
+
   render() {
     return (
       <div>
         {/* <Spotify /> */}
         <QuoteAddNew updateQuotes={this.updateQuotes} />
-        <QuoteDisplayRandom quote={this.state.random} />
-        <QuotesContainer quotes={this.state.quotes} />
+        <QuoteDisplayRandom quote={this.state.random} handleEditRandom={this.handleEditRandom} />
+        <QuotesContainer quotes={this.state.quotes} handleEdit={this.handleEdit} />
       </div>
 
     );

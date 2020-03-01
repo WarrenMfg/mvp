@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const client = require('../database/index.js');
+const ObjectId = require('mongodb').ObjectId;
 const path = require('path');
 
 const PORT = 3000;
@@ -8,9 +9,12 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 
+// is this needed still?
+app.get('/pencil.png', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/images/pencil.png'));
+});
 
 app.get('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').find({}).toArray()
@@ -33,9 +37,24 @@ app.post('/api/quotes', (req, res) => {
 });
 
 app.put('/api/quotes', (req, res) => {
-  // client.db()
+  const id = req.body[1];
+  const { quote, author, student, cohort, dateAdded, dateModified } = req.body[0];
+  const replacement = {
+    quote,
+    author,
+    student,
+    cohort,
+    dateAdded,
+    dateModified
+  };
+  client.db('mvp').collection('quotes').findOneAndReplace({ _id: ObjectId(id) }, replacement, { returnOriginal: false })
+    .then((result) => res.send(result))
+    .catch(() => res.send(404));
 });
 
+// app.delete()
 
+
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
