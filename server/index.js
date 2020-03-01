@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const client = require('../database/index.js');
 const ObjectId = require('mongodb').ObjectId;
 const path = require('path');
+const { getChart } = require('billboard-top-100');
 
 const PORT = 3000;
 const app = express();
@@ -49,6 +50,16 @@ app.delete('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').deleteOne({ _id: ObjectId(req.body.id) })
     .then((result) => res.send(result))
     .catch(() => res.send(404));
+});
+
+app.get('/api/billboard', (req, res) => {
+  getChart((err, chart) => {
+    if (err) {
+      console.log('error at /api/billboard', err);
+    } else {
+      res.send(chart);
+    }
+  });
 });
 
 

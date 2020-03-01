@@ -1,4 +1,6 @@
 import React from 'react';
+import { jsx } from '@emotion/core';
+import CSS from '../CSS/QuoteAddNewCSS.js';
 
 class QuoteAddNew extends React.Component {
   constructor(props) {
@@ -51,7 +53,7 @@ class QuoteAddNew extends React.Component {
   render() {
     const textarea = {resize: 'none'};
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} css={CSS.form}>
         <label>Say something:
           <textarea
             id="quote"

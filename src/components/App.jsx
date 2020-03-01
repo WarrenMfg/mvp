@@ -1,10 +1,9 @@
 import React from 'react';
-import QuoteDisplayRandom from './QuoteDisplayRandom.jsx';
-import QuoteAddNew from './QuoteAddNew.jsx';
-import QuotesContainer from './QuotesContainer.jsx';
-import { jsx } from '@emotion/core';
+import Tabs from './Tabs.jsx';
+import Meow from './Meow.jsx';
+import Pep from './Pep.jsx';
+import { Global, jsx } from '@emotion/core';
 import CSS from '../CSS/AppCSS.js';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +11,8 @@ class App extends React.Component {
     this.state = {
       quotes: [],
       random: undefined,
-      masterEditMode: false
+      masterEditMode: false,
+      tab: 'pep'
     };
 
     this.updateQuotes = this.updateQuotes.bind(this);
@@ -156,22 +156,31 @@ class App extends React.Component {
   render() {
     return (
       <div css={CSS.div}>
-        {/* <Spotify /> */}
-        <QuoteAddNew updateQuotes={this.updateQuotes} />
-        <QuoteDisplayRandom
-          quote={this.state.random}
-          handleRandomPut={this.handleRandomPut}
-          handleRandomDelete={this.handleRandomDelete}
-          masterEditMode={this.state.masterEditMode}
-          toggleMasterEditMode={this.toggleMasterEditMode}
-        />
-        <QuotesContainer
-          quotes={this.state.quotes}
-          handleQuotePut={this.handleQuotePut}
-          handleQuoteDelete={this.handleQuoteDelete}
-          masterEditMode={this.state.masterEditMode}
-          toggleMasterEditMode={this.toggleMasterEditMode}
-        />
+        <Global styles={{
+          'body': {
+            margin: '0',
+            backgroundColor: 'black'
+          }
+        }}/>
+
+        <Tabs />
+
+        {this.state.tab === 'meow' ?
+
+          <Meow /> :
+
+          <Pep
+            updateQuotes={this.updateQuotes}
+            quote={this.state.random}
+            quotes={this.state.quotes}
+            handleRandomPut={this.handleRandomPut}
+            handleRandomDelete={this.handleRandomDelete}
+            handleQuotePut={this.handleQuotePut}
+            handleQuoteDelete={this.handleQuoteDelete}
+            masterEditMode={this.state.masterEditMode}
+            toggleMasterEditMode={this.toggleMasterEditMode}
+          />
+        }
       </div>
 
     );
