@@ -6,7 +6,8 @@ class QuoteAddNew extends React.Component {
     this.state = {
       quote: '',
       author: '',
-      contributor: ''
+      student: '',
+      cohort: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,33 +23,38 @@ class QuoteAddNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     // POST
-    if (this.state.quote && this.state.author && this.state.contributor) {
+    if (this.state.quote && this.state.author && this.state.student && this.state.cohort) {
       fetch('/api/quotes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          quote: this.state.quote,
-          author: this.state.author,
-          contributor: this.state.contributor,
+          quote: this.state.quote.trim(),
+          author: this.state.author.trim(),
+          student: this.state.student.trim(),
+          cohort: this.state.cohort.trim(),
           dateAdded: new Date().toDateString(),
           dateModified: ''
         })
-      });
+      })
+        .then((newQuote) => newQuote.json())
+        .then((newQuote) => this.props.updateQuotes(newQuote))
+        .catch((err) => console.log('error at QuoteAddNew.jsx fetch', err));
     }
 
     this.setState({
       quote: '',
       author: '',
-      contributor: ''
+      student: '',
+      cohort: ''
     });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>Add a quote
+        <label>Contribution:
           <input
             type="text"
             id="quote"
@@ -57,7 +63,7 @@ class QuoteAddNew extends React.Component {
           />
         </label>
 
-        <label>Author
+        <label>Author:
           <input
             type="text"
             id="author"
@@ -66,14 +72,24 @@ class QuoteAddNew extends React.Component {
           />
         </label>
 
-        <label>Submitted by
+        <label>Student:
           <input
             type="text"
-            id="contributor"
-            value={this.state.contributor}
+            id="student"
+            value={this.state.student}
             onChange={this.handleChange}
           />
         </label>
+
+        <label>Cohort:
+          <input
+            type="text"
+            id="cohort"
+            value={this.state.cohort}
+            onChange={this.handleChange}
+          />
+        </label>
+
         <button type="submit" value="Submit">Submit</button>
       </form>
     );

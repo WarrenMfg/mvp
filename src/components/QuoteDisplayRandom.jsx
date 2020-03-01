@@ -3,31 +3,24 @@ import React from 'react';
 class QuoteDisplayRandom extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      random: ''
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      const random = this.props.quotes[Math.floor(Math.random() * this.props.quotes.length)];
-      this.setState({ random });
-    }
   }
 
   render() {
-    const { random } = this.state;
-    return (
-      <div>
-        <p>{random.quote}</p>
-        <div>
-          <p>{random.author}</p>
-          <p>{random.contributor}</p>
-          <p>{random.dateAdded}</p>
-          {random.dateModified && <p>{random.dateModified}</p>}
+    if (this.props.quote) {
+      const { quote, author, student, cohort, dateAdded, dateModified } = this.props.quote;
+      return (
+        <div className="QuoteDisplayRandom">
+          <p>{quote}</p>
+          <div>
+            <p>Author: {author}</p>
+            <p>Student: {student} <span>| Cohort: {cohort}</span></p>
+            <p>Date added: {dateAdded} {dateModified && <span>| Date modified: {dateModified}</span>}</p>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 
