@@ -2,6 +2,8 @@ import React from 'react';
 import QuoteDisplayRandom from './QuoteDisplayRandom.jsx';
 import QuoteAddNew from './QuoteAddNew.jsx';
 import QuotesContainer from './QuotesContainer.jsx';
+import { jsx } from '@emotion/core';
+import CSS from '../CSS/AppCSS.js';
 
 
 class App extends React.Component {
@@ -153,7 +155,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div css={CSS.div}>
         {/* <Spotify /> */}
         <QuoteAddNew updateQuotes={this.updateQuotes} />
         <QuoteDisplayRandom
