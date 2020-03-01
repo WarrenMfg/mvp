@@ -18,36 +18,36 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
-  Meow and Pep
+  - Meow and Pep
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Find the inspiration you need to give your meows and peps.
+  - Find the inspiration you need to give your meows and peps.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  For Hack Reactor students so they can stop panicking during a surprise nomination to give their meows and peps. For meows, select from top songs and play them for reference, then sing your heart out. For peps, select from inspirational quotes curated by HR grads and students.
+  - For Hack Reactor students so they can stop panicking during a surprise nomination to give their meows and peps. For meows, select from top songs and play them for reference, then sing your heart out. For peps, select from inspirational quotes curated by HR grads and students.
 
 ## Problem ##
   > Describe the problem your product solves.
-  When randomly nominated for a meow or pep, students tend to shuffle hastily to find inspiration to deliver their meow or pep.
+  - When randomly nominated for a meow or pep, students tend to shuffle hastily to find inspiration to deliver their meow or pep.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
-  This app helps by offering popular songs and motivational topics which act as a springboard for students to deliver their meow or pep, which in turn helps foster an improved sense of community and camaraderie.
+  - This app helps by offering popular songs and motivational topics which act as a springboard for students to deliver their meow or pep, which in turn helps foster an improved sense of professionalism and camaraderie.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-  Find the inspiration you need to give your meows and peps.
+  - Find the inspiration you need to give your meows and peps.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
-  Click the buttons to randomly generate a popular song and inspirational quotes.
+  - Click the buttons to randomly generate a popular song and inspirational quotes.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  Now I have the tool I need so I don't have to struggle and waste time thinking of a meow or pep--I feel empowered and inspired.
+  - Now I have the tool I need so I don't have to struggle and waste time thinking of a meow or pep--I feel empowered and inspired.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
-  Contribute to the quotes by adding your own, and contribute to the codebase by making a pull request. Let's connect on LinkedIn too!
+  - Contribute to the quotes by adding your own, and contribute to the codebase by making a pull request. Let's connect on LinkedIn too!
