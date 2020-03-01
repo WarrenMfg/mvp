@@ -14,6 +14,7 @@ class QuoteDisplayRandom extends React.Component {
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   toggleEditMode() {
@@ -62,6 +63,12 @@ class QuoteDisplayRandom extends React.Component {
 
       this.props.toggleMasterEditMode();
     }
+  }
+
+  handleDelete() {
+    this.props.handleRandomDelete(this.props.quote);
+    this.setState({ editMode: false });
+    this.props.toggleMasterEditMode();
   }
 
   render() {
@@ -120,6 +127,7 @@ class QuoteDisplayRandom extends React.Component {
           </label>
 
           <button type="submit" value="Submit">Submit</button>
+          <button type="button" value="Delete" onClick={this.handleDelete}>Delete</button>
         </form>
       );
 

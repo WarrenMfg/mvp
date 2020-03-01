@@ -9,12 +9,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       quotes: [],
-      random: {},
+      random: undefined,
       masterEditMode: false
     };
 
     this.updateQuotes = this.updateQuotes.bind(this);
     this.handleRandomPut = this.handleRandomPut.bind(this);
+    this.handleRandomDelete = this.handleRandomDelete.bind(this);
+    this.handleQuoteDelete = this.handleQuoteDelete.bind(this);
     this.handleQuotePut = this.handleQuotePut.bind(this);
     this.toggleMasterEditMode = this.toggleMasterEditMode.bind(this);
   }
@@ -34,12 +36,19 @@ class App extends React.Component {
   }
 
   updateQuotes(newQuote) {
-    this.setState((prevState) => {
-      prevState.quotes.push(newQuote);
-      return {
-        quotes: prevState.quotes.reverse()
-      };
-    });
+    if (this.state.random) {
+      this.setState((prevState) => {
+        prevState.quotes.push(newQuote);
+        return {
+          quotes: prevState.quotes.reverse()
+        };
+      });
+
+    } else {
+      this.setState({ quotes: [newQuote], random: newQuote });
+    }
+
+
   }
 
   handleRandomPut(updatedQuote) {
@@ -80,6 +89,68 @@ class App extends React.Component {
       .catch((err) => console.log('error in App.jsx handlePut', err));
   }
 
+  handleRandomDelete(oldRandomQuote) {
+    fetch('/api/quotes', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: oldRandomQuote._id})
+    })
+      .then((confirmation) => confirmation.json())
+      .then(() => {
+        const randomIndex = Math.floor(Math.random() * (this.state.quotes.length - 1));
+
+        this.setState((prevState) => {
+          const deleteIndex = prevState.quotes.findIndex((quote) => quote._id === oldRandomQuote._id);
+          prevState.quotes.splice(deleteIndex, 1);
+
+          return {
+            quotes: prevState.quotes,
+            random: prevState.quotes[randomIndex]
+          };
+        });
+      })
+      .catch(() => console.log('error in App.jsx handleRandomDelete', err));
+  }
+
+  handleQuoteDelete(oldQuote) {
+    fetch('/api/quotes', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: oldQuote._id})
+    })
+      .then((confirmation) => confirmation.json())
+      .then(() => {
+
+        if (this.state.random._id === oldQuote._id) {
+          const randomIndex = Math.floor(Math.random() * (this.state.quotes.length - 1));
+
+          this.setState((prevState) => {
+            const deleteIndex = prevState.quotes.findIndex((quote) => quote._id === oldQuote._id);
+            prevState.quotes.splice(deleteIndex, 1);
+
+            return {
+              quotes: prevState.quotes,
+              random: prevState.quotes[randomIndex]
+            };
+          });
+        } else {
+          this.setState((prevState) => {
+            const deleteIndex = prevState.quotes.findIndex((quote) => quote._id === oldQuote._id);
+            prevState.quotes.splice(deleteIndex, 1);
+
+            return {
+              quotes: prevState.quotes
+            };
+          });
+        }
+      })
+      .catch(() => console.log('error in App.jsx handleRandomDelete', err));
+  }
+
   render() {
     return (
       <div>
@@ -88,12 +159,14 @@ class App extends React.Component {
         <QuoteDisplayRandom
           quote={this.state.random}
           handleRandomPut={this.handleRandomPut}
+          handleRandomDelete={this.handleRandomDelete}
           masterEditMode={this.state.masterEditMode}
           toggleMasterEditMode={this.toggleMasterEditMode}
         />
         <QuotesContainer
           quotes={this.state.quotes}
           handleQuotePut={this.handleQuotePut}
+          handleQuoteDelete={this.handleQuoteDelete}
           masterEditMode={this.state.masterEditMode}
           toggleMasterEditMode={this.toggleMasterEditMode}
         />

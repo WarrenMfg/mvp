@@ -11,11 +11,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 
-// is this needed still?
-app.get('/pencil.png', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/images/pencil.png'));
-});
-
 app.get('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').find({}).toArray()
     .then((quotes) => res.send(quotes))
@@ -52,7 +47,11 @@ app.put('/api/quotes', (req, res) => {
     .catch(() => res.send(404));
 });
 
-// app.delete()
+app.delete('/api/quotes', (req, res) => {
+  client.db('mvp').collection('quotes').deleteOne({ _id: ObjectId(req.body.id) })
+    .then((result) => res.send(result))
+    .catch(() => res.send(404));
+});
 
 
 app.use('/', express.static(path.resolve(__dirname, '../client/')));

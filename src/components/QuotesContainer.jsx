@@ -14,6 +14,7 @@ class QuotesContainer extends React.Component {
             key={i}
             quote={quote}
             handleQuotePut={this.props.handleQuotePut}
+            handleQuoteDelete={this.props.handleQuoteDelete}
             masterEditMode={this.props.masterEditMode}
             toggleMasterEditMode={this.props.toggleMasterEditMode}
           />
