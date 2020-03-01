@@ -18,10 +18,9 @@ app.get('/api/quotes', (req, res) => {
 });
 
 app.post('/api/quotes', (req, res) => {
-  const { quote, author, student, cohort, dateAdded, dateModified } = req.body;
+  const { quote, student, cohort, dateAdded, dateModified } = req.body;
   client.db('mvp').collection('quotes').insertOne({
     quote,
-    author,
     student,
     cohort,
     dateAdded,
@@ -33,10 +32,9 @@ app.post('/api/quotes', (req, res) => {
 
 app.put('/api/quotes', (req, res) => {
   const id = req.body[1];
-  const { quote, author, student, cohort, dateAdded, dateModified } = req.body[0];
+  const { quote, student, cohort, dateAdded, dateModified } = req.body[0];
   const replacement = {
     quote,
-    author,
     student,
     cohort,
     dateAdded,

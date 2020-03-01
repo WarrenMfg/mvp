@@ -5,7 +5,6 @@ class QuoteAddNew extends React.Component {
     super(props);
     this.state = {
       quote: '',
-      author: '',
       student: '',
       cohort: ''
     };
@@ -23,7 +22,7 @@ class QuoteAddNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.state.quote && this.state.author && this.state.student && this.state.cohort) {
+    if (this.state.quote && this.state.student && this.state.cohort) {
       fetch('/api/quotes', {
         method: 'POST',
         headers: {
@@ -31,7 +30,6 @@ class QuoteAddNew extends React.Component {
         },
         body: JSON.stringify({
           quote: this.state.quote.trim(),
-          author: this.state.author.trim(),
           student: this.state.student.trim(),
           cohort: this.state.cohort.trim(),
           dateAdded: new Date().toDateString(),
@@ -45,37 +43,33 @@ class QuoteAddNew extends React.Component {
 
     this.setState({
       quote: '',
-      author: '',
       student: '',
       cohort: ''
     });
   }
 
   render() {
+    const textarea = {resize: 'none'};
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>Contribution:
-          <input
-            type="text"
+        <label>Say something:
+          <textarea
             id="quote"
+            placeholder="Advice, quotes, etc..."
+            autoFocus
+            required
+            style={ textarea }
             value={this.state.quote}
             onChange={this.handleChange}
-          />
-        </label>
-
-        <label>Author:
-          <input
-            type="text"
-            id="author"
-            value={this.state.author}
-            onChange={this.handleChange}
-          />
+          ></textarea>
         </label>
 
         <label>Student:
           <input
             type="text"
             id="student"
+            placeholder="Your name"
+            required
             value={this.state.student}
             onChange={this.handleChange}
           />
@@ -85,6 +79,8 @@ class QuoteAddNew extends React.Component {
           <input
             type="text"
             id="cohort"
+            placeholder="HRR43"
+            required
             value={this.state.cohort}
             onChange={this.handleChange}
           />
