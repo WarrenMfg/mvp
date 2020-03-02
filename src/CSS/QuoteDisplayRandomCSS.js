@@ -7,8 +7,12 @@ const CSS = {
     gridTemplateAreas: '"quote info"',
     height: '200px',
     borderRadius: '10px',
-    border: '5px dotted black',
-    cursor: 'pointer'
+    border: '5px dotted #012340',
+    cursor: 'pointer',
+    transition: 'border 0.2s ease',
+    '&:hover': {
+      border: '5px dotted #F2522E'
+    }
   },
 
   quote: {
@@ -59,7 +63,7 @@ const CSS = {
     border: '1px solid black',
     padding: '10px 10px',
     '&:focus': {
-      boxShadow: '0 0 5px blue inset'
+      boxShadow: '0 0 5px #F2522E inset'
     }
   },
 
@@ -83,7 +87,7 @@ const CSS = {
     border: '1px solid black',
     padding: '0 10px',
     '&:focus': {
-      boxShadow: '0 0 3px blue inset'
+      boxShadow: '0 0 3px #F2522E inset'
     }
   },
 
@@ -100,7 +104,7 @@ const CSS = {
     border: '1px solid black',
     padding: '0 10px',
     '&:focus': {
-      boxShadow: '0 0 3px blue inset'
+      boxShadow: '0 0 3px #F2522E inset'
     }
   },
 
@@ -113,13 +117,13 @@ const CSS = {
     borderRadius: '10px',
     fontSize: '16px',
     fontWeight: 'bold',
+    transition: 'all 0.2s ease',
     '&:focus': {
-      boxShadow: '0 0 3px blue inset',
-      backgroundColor: 'black',
+      backgroundColor: '#012340',
       color: 'white'
     },
     '&:hover': {
-      backgroundColor: 'black',
+      backgroundColor: '#012340',
       color: 'white',
       cursor: 'pointer'
     }

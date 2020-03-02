@@ -6,6 +6,7 @@ const CSS = {
     width: '100%',
     height: '200px',
     borderRadius: '10px',
+    transition: 'all 0.2s ease',
     '&:link': {
       textDecoration: 'none',
       color: 'black'
@@ -15,6 +16,7 @@ const CSS = {
     },
     '&:hover': {
       boxShadow: '0 0 10px black',
+      color: '#F2522E',
       zIndex: '1'
     }
   },
@@ -33,7 +35,8 @@ const CSS = {
     width: '106px',
     height: '106px',
     gridArea: 'image',
-    justifySelf: 'center'
+    justifySelf: 'center',
+    borderRadius: '5px'
   },
 
   rank: {
@@ -51,7 +54,7 @@ const CSS = {
   title: {
     margin: '0 10px',
     textAlign: 'center',
-    fontSize: '40px',
+    fontSize: '25px',
     gridArea: 'title'
   },
 
@@ -63,7 +66,7 @@ const CSS = {
   artist: {
     margin: '0 10px',
     textAlign: 'center',
-    fontSize: '40px',
+    fontSize: '25px',
     fontWeight: 'bold',
     gridArea: 'artist'
   }

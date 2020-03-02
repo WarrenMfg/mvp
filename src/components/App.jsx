@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from './Tabs.jsx';
 import Meow from './Meow.jsx';
 import Pep from './Pep.jsx';
-import { Global, jsx } from '@emotion/core';
+import { Global, jsx, keyframes } from '@emotion/core';
 import CSS from '../CSS/AppCSS.js';
 
 class App extends React.Component {
@@ -171,6 +171,7 @@ class App extends React.Component {
       <div css={CSS.div}>
         <Global styles={{
           '*': {
+            fontFamily: 'Arial',
             boxSizing: 'border-box'
           },
           '*:focus': {
@@ -178,7 +179,7 @@ class App extends React.Component {
           },
           'body': {
             margin: '0',
-            backgroundColor: 'black'
+            backgroundColor: '#012340'
           }
         }}/>
 
