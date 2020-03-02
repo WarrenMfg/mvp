@@ -17,7 +17,7 @@ app.use(express.json());
 app.get('/api/top100', (req, res) => {
   getChart((err, chart) => {
     if (err) {
-      res.send(404);
+      res.sendStatus(404);
     } else {
       res.set({'Cache-Control': 'max-age=86400'});
       res.send(chart);
@@ -28,7 +28,7 @@ app.get('/api/top100', (req, res) => {
 app.get('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').find({}).toArray()
     .then((quotes) => res.send(quotes))
-    .catch(() => res.send(404));
+    .catch(() => res.sendStatus(404));
 });
 
 app.post('/api/quotes', (req, res) => {
@@ -41,7 +41,7 @@ app.post('/api/quotes', (req, res) => {
     dateModified
   })
     .then((response) => res.send(response.ops[0]))
-    .catch(() => res.send(404));
+    .catch(() => res.sendStatus(404));
 });
 
 app.put('/api/quotes', (req, res) => {
@@ -56,13 +56,13 @@ app.put('/api/quotes', (req, res) => {
   };
   client.db('mvp').collection('quotes').findOneAndReplace({ _id: ObjectId(id) }, replacement, { returnOriginal: false })
     .then((result) => res.send(result))
-    .catch(() => res.send(404));
+    .catch(() => res.sendStatus(404));
 });
 
 app.delete('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').deleteOne({ _id: ObjectId(req.body.id) })
     .then((result) => res.send(result))
-    .catch(() => res.send(404));
+    .catch(() => res.sendStatus(404));
 });
 
 
