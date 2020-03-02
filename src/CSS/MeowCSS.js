@@ -1,6 +1,6 @@
 const CSS = {
-  form: {
-    // backgroundColor: 'pink'
+  meowContainer: {
+    padding: '0 10px'
   }
 };
 

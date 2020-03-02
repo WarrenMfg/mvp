@@ -5,12 +5,25 @@ const ObjectId = require('mongodb').ObjectId;
 const path = require('path');
 const { getChart } = require('billboard-top-100');
 
+let top100;
+
 const PORT = 3000;
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
 
+
+app.get('/api/top100', (req, res) => {
+  getChart((err, chart) => {
+    if (err) {
+      res.send(404);
+    } else {
+      res.set({'Cache-Control': 'max-age=86400'});
+      res.send(chart);
+    }
+  });
+});
 
 app.get('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').find({}).toArray()
@@ -50,16 +63,6 @@ app.delete('/api/quotes', (req, res) => {
   client.db('mvp').collection('quotes').deleteOne({ _id: ObjectId(req.body.id) })
     .then((result) => res.send(result))
     .catch(() => res.send(404));
-});
-
-app.get('/api/billboard', (req, res) => {
-  getChart((err, chart) => {
-    if (err) {
-      console.log('error at /api/billboard', err);
-    } else {
-      res.send(chart);
-    }
-  });
 });
 
 

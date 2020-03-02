@@ -9,12 +9,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeTab: 'Meow',
+      top100: [],
       quotes: [],
       random: undefined,
       masterEditMode: false,
-      tab: 'pep'
     };
 
+    this.handleChangeTab = this.handleChangeTab.bind(this);
     this.updateQuotes = this.updateQuotes.bind(this);
     this.handleRandomPut = this.handleRandomPut.bind(this);
     this.handleRandomDelete = this.handleRandomDelete.bind(this);
@@ -24,13 +26,24 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    fetch('/api/top100', {cache: 'default'})
+      .then((data) => data.json())
+      .then((top100) => {
+        this.setState({ top100: top100.songs });
+      })
+      .catch((err) => console.log('error at componentDidMount /api/top100', err));
+
     fetch('/api/quotes')
       .then((quotes) => quotes.json())
       .then((quotes) => {
         const random = quotes[Math.floor(Math.random() * quotes.length)];
         this.setState({ quotes: quotes.reverse(), random });
       })
-      .catch((err) => console.log('error at componentDidMount fetch', err));
+      .catch((err) => console.log('error at componentDidMount /api/quotes', err));
+  }
+
+  handleChangeTab(activeTab) {
+    this.setState({ activeTab });
   }
 
   toggleMasterEditMode() {
@@ -163,11 +176,16 @@ class App extends React.Component {
           }
         }}/>
 
-        <Tabs />
+        <Tabs
+          activeTab={this.state.activeTab}
+          handleChangeTab={this.handleChangeTab}
+        />
 
-        {this.state.tab === 'meow' ?
+        {this.state.activeTab === 'Meow' ?
 
-          <Meow /> :
+          <Meow
+            top100={this.state.top100}
+          /> :
 
           <Pep
             updateQuotes={this.updateQuotes}
