@@ -37,7 +37,7 @@ const CSS = {
   },
 
   rank: {
-    margin: '0',
+    margin: '0 10px 0',
     fontSize: '75px',
     gridArea: 'rank',
     justifySelf: 'center'

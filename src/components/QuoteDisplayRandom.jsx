@@ -89,6 +89,7 @@ class QuoteDisplayRandom extends React.Component {
 
       return (
         <form onSubmit={this.handleSubmit} css={CSS.form}>
+
           <div css={CSS.divTop}>
             <p css={CSS.saySomething}>Edit something: </p>
             <textarea
@@ -141,7 +142,6 @@ class QuoteDisplayRandom extends React.Component {
               Delete
             </button>
           </div>
-
 
         </form>
       );

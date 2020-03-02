@@ -74,57 +74,76 @@ class Quote extends React.Component {
 
     if (!this.state.editMode) {
       return (
-        <div className="Quote" onClick={this.toggleEditMode}>
-          <p className="Quote-quote">{quote}</p>
-          <div>
-            <p>Student: {student} <span>| Cohort: {cohort}</span></p>
-            <p>Date added: {dateAdded} {dateModified && <span>| Date modified: {dateModified}</span>}</p>
+        <div onClick={this.toggleEditMode} css={CSS.displayDiv}>
+          <p css={CSS.quote}>{quote}</p>
+          <div css={CSS.infoDiv}>
+            <p><span>Student: </span>{student}</p>
+            <p><span>Cohort: </span>{cohort}</p>
+            <p><span>Date added: </span>{dateAdded}</p>
+            {dateModified && <p><span>Date modified: </span>{dateModified}</p>}
           </div>
         </div>
       );
 
     } else if (this.state.editMode) {
       const { quote, student, cohort, dateAdded, dateModified } = this.props.quote;
-      const textarea = {resize: 'none'};
 
       return (
-        <form onSubmit={this.handleSubmit}>
-          <label>Say something:
+        <form onSubmit={this.handleSubmit} css={CSS.form}>
+
+          <div css={CSS.divTop}>
+            <p css={CSS.saySomething}>Edit something: </p>
             <textarea
               id="quote"
               placeholder="Advice, quotes, etc..."
               autoFocus
               required
-              style={ textarea }
+              css={CSS.textarea}
               value={this.state.quote}
               onChange={this.handleChange}
             ></textarea>
-          </label>
+          </div>
 
-          <label>Student:
+          <div css={CSS.divBottom}>
+            <p css={CSS.student}>Student: </p>
             <input
               type="text"
-              id="edit-student"
+              id="edit-random-student"
               placeholder="Your name"
               required
+              css={CSS.studentInput}
               value={this.state.student}
               onChange={this.handleChange}
             />
-          </label>
 
-          <label>Cohort:
+            <p css={CSS.cohort}>Cohort: </p>
             <input
               type="text"
-              id="edit-cohort"
+              id="edit-random-cohort"
               placeholder="HRR43"
               required
+              css={CSS.cohortInput}
               value={this.state.cohort}
               onChange={this.handleChange}
             />
-          </label>
 
-          <button type="submit" value="Confirm">Confirm</button>
-          <button type="button" value="Delete" onClick={this.handleDelete}>Delete</button>
+            <button
+              type="submit"
+              value="Confirm"
+              css={CSS.button}
+            >
+              Confirm
+            </button>
+            <button
+              type="button"
+              value="Delete"
+              onClick={this.handleDelete}
+              css={CSS.button}
+            >
+              Delete
+            </button>
+          </div>
+
         </form>
       );
     }

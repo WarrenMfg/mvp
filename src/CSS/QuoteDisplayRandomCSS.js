@@ -1,7 +1,7 @@
 const CSS = {
   displayDiv: {
     display: 'grid',
-    padding: '10px',
+    padding: '20px',
     alignItems: 'center',
     gridTemplateColumns: '1fr 1fr',
     gridTemplateAreas: '"quote info"',
@@ -12,7 +12,7 @@ const CSS = {
   },
 
   quote: {
-    margin: '0 10px 0 0',
+    margin: '0 20px 0 0',
     justifySelf: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
