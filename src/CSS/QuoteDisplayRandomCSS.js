@@ -11,7 +11,8 @@ const CSS = {
     cursor: 'pointer',
     transition: 'border 0.2s ease',
     '&:hover': {
-      border: '5px dotted #F2522E'
+      border: '5px dotted #F2522E',
+      color: '#F2522E'
     }
   },
 
@@ -23,7 +24,7 @@ const CSS = {
     fontStyle: 'italic',
     gridArea: 'quote',
     maxHeight: '200px',
-    overflowY: 'hidden',
+    overflowY: 'hidden'
   },
 
   infoDiv: {

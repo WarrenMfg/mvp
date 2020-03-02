@@ -5,11 +5,12 @@ import Pep from './Pep.jsx';
 import { Global, jsx, keyframes } from '@emotion/core';
 import CSS from '../CSS/AppCSS.js';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'Pep',
+      activeTab: 'Meow',
       top100: [],
       quotes: [],
       random: undefined,
@@ -23,6 +24,7 @@ class App extends React.Component {
     this.handleQuoteDelete = this.handleQuoteDelete.bind(this);
     this.handleQuotePut = this.handleQuotePut.bind(this);
     this.toggleMasterEditMode = this.toggleMasterEditMode.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +42,15 @@ class App extends React.Component {
         this.setState({ quotes: quotes.reverse(), random });
       })
       .catch((err) => console.log('error at componentDidMount /api/quotes', err));
+
+    window.onscroll = () => {
+      const scrollDiv = document.getElementById('App-scroll');
+      if (window.scrollY >= 1350) {
+        scrollDiv.style.bottom = '0';
+      } else {
+        scrollDiv.style.bottom = '-10vw';
+      }
+    };
   }
 
   handleChangeTab(activeTab) {
@@ -166,6 +177,14 @@ class App extends React.Component {
       .catch(() => console.log('error in App.jsx handleRandomDelete', err));
   }
 
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
   render() {
     return (
       <div css={CSS.div}>
@@ -206,8 +225,9 @@ class App extends React.Component {
             toggleMasterEditMode={this.toggleMasterEditMode}
           />
         }
-      </div>
 
+        <div id="App-scroll" onClick={this.scrollToTop} css={CSS.toTop}><span>Top</span></div>
+      </div>
     );
   }
 }

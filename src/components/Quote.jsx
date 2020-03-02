@@ -32,7 +32,7 @@ class Quote extends React.Component {
   }
 
   handleChange(e) {
-    const splitId = e.target.id.split('-')[1];
+    const splitId = e.target.id.split('-')[2];
     this.setState({
       [splitId]: e.target.value
     });
@@ -94,7 +94,7 @@ class Quote extends React.Component {
           <div css={CSS.divTop}>
             <p css={CSS.saySomething}>Edit something: </p>
             <textarea
-              id="quote"
+              id="edit-quote-quote"
               placeholder="Advice, quotes, etc..."
               autoFocus
               required
@@ -107,7 +107,7 @@ class Quote extends React.Component {
           <div css={CSS.divBottom}>
             <p css={CSS.student}>Student: </p>
             <input
-              type="text"
+              type="edit-quote-text"
               id="edit-random-student"
               placeholder="Your name"
               required
@@ -119,7 +119,7 @@ class Quote extends React.Component {
             <p css={CSS.cohort}>Cohort: </p>
             <input
               type="text"
-              id="edit-random-cohort"
+              id="edit-quote-cohort"
               placeholder="HRR43"
               required
               css={CSS.cohortInput}

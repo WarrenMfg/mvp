@@ -11,6 +11,7 @@ const CSS = {
     justifyContent: 'center',
     alignItems: 'center',
     width: '50%',
+    boxShadow: '-10px -10px 10px -10px black inset',
     transition: 'background-color 0.2s ease',
     '&:hover': {
       backgroundColor: '#F27830'
@@ -39,6 +40,7 @@ const CSS = {
     justifyContent: 'center',
     alignItems: 'center',
     width: '50%',
+    boxShadow: '10px -10px 10px -10px black inset',
     transition: 'background-color 0.2s ease',
     '&:hover': {
       backgroundColor: '#F27830'

@@ -93,7 +93,7 @@ class QuoteDisplayRandom extends React.Component {
           <div css={CSS.divTop}>
             <p css={CSS.saySomething}>Edit something: </p>
             <textarea
-              id="quote"
+              id="edit-random-quote"
               placeholder="Advice, quotes, etc..."
               autoFocus
               required

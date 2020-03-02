@@ -21,14 +21,14 @@ class Tabs extends React.Component {
           CSS.meowContainerActive :
           CSS.meowContainer
         }>
-          <p css={CSS.meow}>Meow</p>
+          <h1 css={CSS.meow}>Meow</h1>
         </div>
 
         <div css={this.props.activeTab === 'Pep' ?
           CSS.pepContainerActive :
           CSS.pepContainer
         }>
-          <p css={CSS.pep}>Pep</p>
+          <h1 css={CSS.pep}>Pep</h1>
         </div>
       </div>
     );

@@ -14,6 +14,7 @@ class Pep extends React.Component {
     return (
       <div css={CSS.pepContainer}>
         <QuoteAddNew updateQuotes={this.props.updateQuotes} />
+        <h1 css={CSS.h1}>Featured Quote</h1>
         <QuoteDisplayRandom
           quote={this.props.quote}
           handleRandomPut={this.props.handleRandomPut}

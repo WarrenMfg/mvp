@@ -12,6 +12,10 @@ class Meow extends React.Component {
   render() {
     return (
       <div css={CSS.meowContainer}>
+        <div css={CSS.headers}>
+          <h2>Billboard Top 100</h2>
+          <h3>Updated every Saturday</h3>
+        </div>
         {this.props.top100.map((song, i) => <Song key={i} song={song} />)}
       </div>
     );

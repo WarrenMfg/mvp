@@ -39,15 +39,20 @@ class QuoteAddNew extends React.Component {
         })
       })
         .then((newQuote) => newQuote.json())
-        .then((newQuote) => this.props.updateQuotes(newQuote))
+        .then((newQuote) => {
+          this.props.updateQuotes(newQuote);
+
+          this.setState({
+            quote: '',
+            student: '',
+            cohort: ''
+          });
+
+          document.getElementById('quote').focus();
+        })
         .catch((err) => console.log('error at QuoteAddNew.jsx fetch', err));
     }
 
-    this.setState({
-      quote: '',
-      student: '',
-      cohort: ''
-    });
   }
 
   render() {
