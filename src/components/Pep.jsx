@@ -1,4 +1,6 @@
 import React from 'react';
+import { jsx } from '@emotion/core';
+import CSS from '../CSS/PepCSS.js';
 import QuoteAddNew from './QuoteAddNew.jsx';
 import QuoteDisplayRandom from './QuoteDisplayRandom.jsx';
 import QuotesContainer from './QuotesContainer.jsx';
@@ -10,7 +12,7 @@ class Pep extends React.Component {
 
   render() {
     return (
-      <div>
+      <div css={CSS.pepContainer}>
         <QuoteAddNew updateQuotes={this.props.updateQuotes} />
         <QuoteDisplayRandom
           quote={this.props.quote}

@@ -18,11 +18,15 @@ class Song extends React.Component {
     const { cover, rank, title, artist } = this.props.song;
     return (
       <a href={this.link()} target="_blank" css={CSS.link}>
-        <div css={CSS.div}>
+        <div css={CSS.containerDiv}>
           <img src={cover} css={CSS.image} />
           <p css={CSS.rank}>#{rank}</p>
-          <p css={CSS.title}>"{title}"</p>
-          <p css={CSS.artist}>{artist}</p>
+          <div css={CSS.titleContainer}>
+            <p css={CSS.title}>"{title}"</p>
+          </div>
+          <div css={CSS.artistContainer}>
+            <p css={CSS.artist}>{artist}</p>
+          </div>
         </div>
       </a>
     );

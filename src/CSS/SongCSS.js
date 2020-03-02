@@ -19,7 +19,7 @@ const CSS = {
     }
   },
 
-  div: {
+  containerDiv: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 4fr 4fr',
     gridTemplateAreas: '"image rank title artist"',
@@ -27,7 +27,6 @@ const CSS = {
     width: '85%',
     height: '100%',
     margin: '0 auto',
-    overflowY: 'hidden'
   },
 
   image: {
@@ -44,14 +43,26 @@ const CSS = {
     justifySelf: 'center'
   },
 
+  titleContainer: {
+    maxHeight: '200px',
+    overflowY: 'hidden',
+  },
+
   title: {
     margin: '0 10px',
+    textAlign: 'center',
     fontSize: '40px',
     gridArea: 'title'
   },
 
+  artistContainer: {
+    maxHeight: '200px',
+    overflowY: 'hidden',
+  },
+
   artist: {
     margin: '0 10px',
+    textAlign: 'center',
     fontSize: '40px',
     fontWeight: 'bold',
     gridArea: 'artist'

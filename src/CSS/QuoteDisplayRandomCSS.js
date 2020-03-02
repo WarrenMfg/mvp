@@ -1,4 +1,36 @@
 const CSS = {
+  displayDiv: {
+    display: 'grid',
+    padding: '10px',
+    alignItems: 'center',
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateAreas: '"quote info"',
+    height: '200px',
+    borderRadius: '10px',
+    border: '5px dotted black',
+    cursor: 'pointer'
+  },
+
+  quote: {
+    margin: '0 10px 0 0',
+    justifySelf: 'center',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    gridArea: 'quote',
+    maxHeight: '200px',
+    overflowY: 'hidden',
+  },
+
+  infoDiv: {
+    padding: '0 0 0 10px',
+    '& span': {
+      fontWeight: 'bold'
+    }
+  },
+
+  /////////// FORM ///////////
+
   form: {
     display: 'grid',
     gridTemplateRows: '1.25fr 0.75fr',

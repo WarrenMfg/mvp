@@ -51,44 +51,52 @@ class QuoteAddNew extends React.Component {
   }
 
   render() {
-    const textarea = {resize: 'none'};
     return (
       <form onSubmit={this.handleSubmit} css={CSS.form}>
-        <label>Say something:
+        <div css={CSS.divTop}>
+          <p css={CSS.saySomething}>Say something: </p>
           <textarea
             id="quote"
             placeholder="Advice, quotes, etc..."
             autoFocus
             required
-            style={ textarea }
+            css={CSS.textarea}
             value={this.state.quote}
             onChange={this.handleChange}
           ></textarea>
-        </label>
+        </div>
 
-        <label>Student:
+        <div css={CSS.divBottom}>
+          <p css={CSS.student}>Student: </p>
           <input
             type="text"
             id="student"
             placeholder="Your name"
             required
+            css={CSS.studentInput}
             value={this.state.student}
             onChange={this.handleChange}
           />
-        </label>
 
-        <label>Cohort:
+          <p css={CSS.cohort}>Cohort: </p>
           <input
             type="text"
             id="cohort"
             placeholder="HRR43"
             required
+            css={CSS.cohortInput}
             value={this.state.cohort}
             onChange={this.handleChange}
           />
-        </label>
 
-        <button type="submit" value="Submit">Submit</button>
+          <button
+            type="submit"
+            value="Submit"
+            css={CSS.button}
+          >
+            Submit
+          </button>
+        </div>
       </form>
     );
   }

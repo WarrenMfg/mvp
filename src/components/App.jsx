@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'Meow',
+      activeTab: 'Pep',
       top100: [],
       quotes: [],
       random: undefined,
@@ -170,6 +170,12 @@ class App extends React.Component {
     return (
       <div css={CSS.div}>
         <Global styles={{
+          '*': {
+            boxSizing: 'border-box'
+          },
+          '*:focus': {
+            outline: 'none'
+          },
           'body': {
             margin: '0',
             backgroundColor: 'black'
