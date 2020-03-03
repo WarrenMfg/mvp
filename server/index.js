@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const client = require('../database/index.js');
 const ObjectId = require('mongodb').ObjectId;
 const path = require('path');
+const fs = require('fs');
+const zlib = require('zlib');
 const { getChart } = require('billboard-top-100');
 
 let top100;
@@ -13,6 +15,17 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
+
+app.get('/bundle.js', (req, res) => {
+  const gzip = zlib.createGzip();
+  const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
+  res.set({'Content-Encoding': 'gzip'});
+  stream.pipe(gzip).pipe(res);
+});
+
+app.get('/loading.gif', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/images/loading.gif'));
+});
 
 app.get('/api/top100', (req, res) => {
   getChart((err, chart) => {

@@ -1,7 +1,8 @@
 /*
 COLOR THEME
 
-blue: #012340 // #034C8C
+dark blue: #011C33
+light blue: #02335E
 dark orange: #F2522E
 light orange: #F27830
 tan: #EEAF86
@@ -15,6 +16,13 @@ const CSS = {
     margin: '0 auto',
     backgroundColor: 'white',
     overflowX: 'scroll'
+  },
+
+  loading: {
+    position: 'fixed',
+    top: '50vh',
+    left: '50vw',
+    transform: 'translate(-50%, -50%)'
   },
 
   toTop: {

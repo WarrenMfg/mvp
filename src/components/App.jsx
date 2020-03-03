@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from './Tabs.jsx';
 import Meow from './Meow.jsx';
 import Pep from './Pep.jsx';
-import { Global, jsx, css, keyframes } from '@emotion/core';
+import { Global, jsx, keyframes } from '@emotion/core';
 import CSS from '../CSS/AppCSS.js';
 
 
@@ -10,6 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       activeTab: 'Meow',
       top100: [],
       quotes: [],
@@ -31,7 +32,10 @@ class App extends React.Component {
     fetch('/api/top100', {cache: 'default'})
       .then((data) => data.json())
       .then((top100) => {
-        this.setState({ top100: top100.songs });
+        this.setState({
+          top100: top100.songs,
+          loading: false
+        });
       })
       .catch((err) => console.log('error at componentDidMount /api/top100', err));
 
@@ -206,7 +210,7 @@ class App extends React.Component {
 
     return (
       <div css={CSS.div}>
-        <Global styles={css({
+        <Global styles={{
           '*': {
             fontFamily: 'Arial',
             boxSizing: 'border-box',
@@ -221,12 +225,14 @@ class App extends React.Component {
             margin: '0',
             animation: `${gradient} 5s infinite alternate`
           }
-        })}/>
+        }}/>
 
         <Tabs
           activeTab={this.state.activeTab}
           handleChangeTab={this.handleChangeTab}
         />
+
+        {this.state.loading && <img src="/loading.gif" css={CSS.loading} />}
 
         {this.state.activeTab === 'Meow' ?
 

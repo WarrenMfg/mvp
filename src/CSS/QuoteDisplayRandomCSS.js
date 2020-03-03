@@ -7,7 +7,7 @@ const CSS = {
     gridTemplateAreas: '"quote info"',
     height: '200px',
     borderRadius: '10px',
-    border: '5px dotted #012340',
+    border: '5px dotted #011C33',
     cursor: 'pointer',
     transition: 'border 0.2s ease',
     '&:hover': {
@@ -120,11 +120,11 @@ const CSS = {
     fontWeight: 'bold',
     transition: 'all 0.2s ease',
     '&:focus': {
-      backgroundColor: '#012340',
+      backgroundColor: '#011C33',
       color: 'white'
     },
     '&:hover': {
-      backgroundColor: '#012340',
+      backgroundColor: '#011C33',
       color: 'white',
       cursor: 'pointer'
     }

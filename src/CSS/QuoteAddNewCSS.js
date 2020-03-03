@@ -83,11 +83,11 @@ const CSS = {
     fontWeight: 'bold',
     transition: 'all 0.2s ease',
     '&:focus': {
-      backgroundColor: '#012340',
+      backgroundColor: '#011C33',
       color: 'white'
     },
     '&:hover': {
-      backgroundColor: '#012340',
+      backgroundColor: '#011C33',
       color: 'white',
       cursor: 'pointer'
     }
