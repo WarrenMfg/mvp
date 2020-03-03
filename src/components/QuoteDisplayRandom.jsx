@@ -52,12 +52,15 @@ class QuoteDisplayRandom extends React.Component {
 
       this.props.handleRandomPut([updatedQuote, this.props.quote._id]); // PUT
 
-      this.setState({
-        editMode: false,
-        quote: '',
-        student: '',
-        cohort: ''
-      });
+      // to remedy flicker of old quote passed down from App.jsx
+      setTimeout(() => {
+        this.setState({
+          editMode: false,
+          quote: '',
+          student: '',
+          cohort: ''
+        });
+      }, 250);
 
       this.props.toggleMasterEditMode();
     }
