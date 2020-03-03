@@ -29,8 +29,6 @@ app.get('/bundle.js', (req, res) => {
   stream.pipe(gzip).pipe(res);
 });
 
-app.use('/', express.static(path.resolve(__dirname, '../client/')));
-
 app.get('/loading.gif', (req, res) => {
   res.set({ 'Cache-Control': 'max-age=86400' });
   res.sendFile(path.resolve(__dirname, '../client/images/loading.gif'));
@@ -88,5 +86,6 @@ app.delete('/api/quotes', (req, res) => {
 });
 
 
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
