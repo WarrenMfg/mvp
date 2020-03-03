@@ -7,13 +7,13 @@ const fs = require('fs');
 const zlib = require('zlib');
 const { getChart } = require('billboard-top-100');
 
-
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
 
+const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
 
 
 app.get('/favicon.ico', (req, res) => {
@@ -21,9 +21,8 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.get('/bundle.js', (req, res) => {
-  const gzip = zlib.createBrotliCompress();
-  const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
-  res.set({'Content-Encoding': 'br'});
+  const gzip = zlib.createGzip();
+  res.set({'Content-Encoding': 'gzip'});
   stream.pipe(gzip).pipe(res);
 });
 
