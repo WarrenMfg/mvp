@@ -60,7 +60,7 @@ class QuoteDisplayRandom extends React.Component {
           student: '',
           cohort: ''
         });
-      }, 250);
+      }, 500);
 
       this.props.toggleMasterEditMode();
     }
