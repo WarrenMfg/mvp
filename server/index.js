@@ -21,9 +21,9 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.get('/bundle.js', (req, res) => {
-  const gzip = zlib.createGzip();
+  const gzip = zlib.createBrotliCompress();
   const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
-  res.set({'Content-Encoding': 'gzip'});
+  res.set({'Content-Encoding': 'br'});
   stream.pipe(gzip).pipe(res);
 });
 
