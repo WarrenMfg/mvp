@@ -15,19 +15,24 @@ app.use(express.json());
 
 
 app.get('/favicon.ico', (req, res) => {
+  res.set({ 'Cache-Control': 'max-age=86400' });
   res.sendFile(path.resolve(__dirname, '../client/images/hr.png'));
 });
 
 app.get('/bundle.js', (req, res) => {
   const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
   const gzip = zlib.createGzip();
-  res.set({'Content-Encoding': 'gzip'});
+  res.set({
+    'Content-Encoding': 'gzip',
+    'Cache-Control': 'max-age=86400'
+  });
   stream.pipe(gzip).pipe(res);
 });
 
 app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 app.get('/loading.gif', (req, res) => {
+  res.set({ 'Cache-Control': 'max-age=86400' });
   res.sendFile(path.resolve(__dirname, '../client/images/loading.gif'));
 });
 
