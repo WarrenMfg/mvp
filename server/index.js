@@ -7,13 +7,14 @@ const fs = require('fs');
 const zlib = require('zlib');
 const { getChart } = require('billboard-top-100');
 
-let top100;
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
+
 
 
 app.get('/favicon.ico', (req, res) => {
@@ -83,6 +84,5 @@ app.delete('/api/quotes', (req, res) => {
 });
 
 
-app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
