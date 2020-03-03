@@ -9,7 +9,7 @@ const { getChart } = require('billboard-top-100');
 
 let top100;
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(morgan('dev'));
