@@ -7,22 +7,19 @@ const CSS = {
 
   meowContainerActive: {
     display: 'flex',
-    backgroundColor: '#EEAF86',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '50%',
-    boxShadow: '-10px -10px 10px -10px black inset',
-    transition: 'background-color 0.2s ease',
-    '&:hover': {
-      backgroundColor: '#F27830'
-    }
+    width: '50%'
   },
 
   meowContainer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#EEAF86',
     width: '50%',
+    boxShadow: '-10px -10px 10px -10px black inset',
     transition: 'background-color 0.2s ease',
     '&:hover': {
       backgroundColor: '#F27830'
@@ -36,22 +33,19 @@ const CSS = {
 
   pepContainerActive: {
     display: 'flex',
-    backgroundColor: '#EEAF86',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '50%',
-    boxShadow: '10px -10px 10px -10px black inset',
-    transition: 'background-color 0.2s ease',
-    '&:hover': {
-      backgroundColor: '#F27830'
-    }
+    width: '50%'
   },
 
   pepContainer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#EEAF86',
     width: '50%',
+    boxShadow: '10px -10px 10px -10px black inset',
     transition: 'background-color 0.2s ease',
     '&:hover': {
       backgroundColor: '#F27830'
