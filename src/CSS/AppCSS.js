@@ -1,7 +1,7 @@
 /*
 COLOR THEME
 
-blue: #012340
+blue: #012340 // #034C8C
 dark orange: #F2522E
 light orange: #F27830
 tan: #EEAF86

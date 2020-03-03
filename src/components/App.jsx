@@ -2,7 +2,7 @@ import React from 'react';
 import Tabs from './Tabs.jsx';
 import Meow from './Meow.jsx';
 import Pep from './Pep.jsx';
-import { Global, jsx, keyframes } from '@emotion/core';
+import { Global, jsx, css, keyframes } from '@emotion/core';
 import CSS from '../CSS/AppCSS.js';
 
 
@@ -195,21 +195,33 @@ class App extends React.Component {
   }
 
   render() {
+    const gradient = keyframes({
+      '0%': {
+        backgroundColor: '#011C33'
+      },
+      '100%': {
+        backgroundColor: '#02335E'
+      }
+    });
+
     return (
       <div css={CSS.div}>
-        <Global styles={{
+        <Global styles={css({
           '*': {
             fontFamily: 'Arial',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+          },
+          '*::selection': {
+            backgroundColor: '#EEAF86'
           },
           '*:focus': {
             outline: 'none'
           },
           'body': {
             margin: '0',
-            backgroundColor: '#012340'
+            animation: `${gradient} 5s infinite alternate`
           }
-        }}/>
+        })}/>
 
         <Tabs
           activeTab={this.state.activeTab}
