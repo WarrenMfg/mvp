@@ -86,7 +86,16 @@ class App extends React.Component {
       body: JSON.stringify(updatedQuote)
     })
       .then((dbUpdatedQuote) => dbUpdatedQuote.json())
-      .then((updatedRandom) => this.setState({random: updatedRandom.value}))
+      .then((updatedRandom) => {
+        const index = this.state.quotes.findIndex((quote) => quote._id === updatedRandom.value._id);
+        this.setState((prevState) => {
+          prevState.quotes[index] = updatedRandom.value;
+          return {
+            quotes: prevState.quotes,
+            random: updatedRandom.value
+          };
+        });
+      })
       .catch((err) => console.log('error in App.jsx handlePut', err));
   }
 
