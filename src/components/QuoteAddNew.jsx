@@ -31,9 +31,9 @@ class QuoteAddNew extends React.Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          quote: this.state.quote.trim(),
-          student: this.state.student.trim(),
-          cohort: this.state.cohort.trim(),
+          quote: DOMPurify.sanitize(this.state.quote.trim()),
+          student: DOMPurify.sanitize(this.state.student.trim()),
+          cohort: DOMPurify.sanitize(this.state.cohort.trim()),
           dateAdded: new Date().toDateString(),
           dateModified: ''
         })

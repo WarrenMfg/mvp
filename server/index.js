@@ -7,7 +7,7 @@ const fs = require('fs');
 const zlib = require('zlib');
 const { getChart } = require('billboard-top-100');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(morgan('dev'));
@@ -17,6 +17,26 @@ app.use(express.json());
 app.get('/favicon.ico', (req, res) => {
   res.set({ 'Cache-Control': 'max-age=86400' });
   res.sendFile(path.resolve(__dirname, '../client/images/hr.png'));
+});
+
+app.get('/purify.min.js', (req, res) => {
+  const stream = fs.createReadStream(path.resolve(__dirname, '../client/purify.min.js'));
+  const gzip = zlib.createGzip();
+  res.set({
+    'Content-Encoding': 'gzip',
+    'Cache-Control': 'max-age=86400'
+  });
+  stream.pipe(gzip).pipe(res);
+});
+
+app.get('/purify.min.js.map', (req, res) => {
+  const stream = fs.createReadStream(path.resolve(__dirname, '../client/purify.min.js.map'));
+  const gzip = zlib.createGzip();
+  res.set({
+    'Content-Encoding': 'gzip',
+    'Cache-Control': 'max-age=86400'
+  });
+  stream.pipe(gzip).pipe(res);
 });
 
 app.get('/bundle.js', (req, res) => {

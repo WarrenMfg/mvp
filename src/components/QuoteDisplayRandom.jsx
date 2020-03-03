@@ -43,9 +43,9 @@ class QuoteDisplayRandom extends React.Component {
 
     if (this.state.quote && this.state.student && this.state.cohort) {
       const updatedQuote = {
-        quote: this.state.quote.trim(),
-        student: this.state.student.trim(),
-        cohort: this.state.cohort.trim(),
+        quote: DOMPurify.sanitize(this.state.quote.trim()),
+        student: DOMPurify.sanitize(this.state.student.trim()),
+        cohort: DOMPurify.sanitize(this.state.cohort.trim()),
         dateAdded: this.props.quote.dateAdded,
         dateModified: new Date().toDateString()
       };
