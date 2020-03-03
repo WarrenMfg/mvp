@@ -13,7 +13,6 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 
 
@@ -27,6 +26,8 @@ app.get('/bundle.js', (req, res) => {
   res.set({'Content-Encoding': 'gzip'});
   stream.pipe(gzip).pipe(res);
 });
+
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
 
 app.get('/loading.gif', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/images/loading.gif'));
