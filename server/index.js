@@ -13,14 +13,13 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
-const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
-
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/images/hr.png'));
 });
 
 app.get('/bundle.js', (req, res) => {
+  const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
   const gzip = zlib.createGzip();
   res.set({'Content-Encoding': 'gzip'});
   stream.pipe(gzip).pipe(res);
