@@ -16,6 +16,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/images/hr.png'));
+});
+
 app.get('/bundle.js', (req, res) => {
   const gzip = zlib.createGzip();
   const stream = fs.createReadStream(path.resolve(__dirname, '../client/bundle.js'));
