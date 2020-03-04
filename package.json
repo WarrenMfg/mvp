@@ -45,7 +45,6 @@
     "mongodb": "^3.5.4",
     "morgan": "^1.9.1",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "regenerator-runtime": "^0.13.3"
+    "react-dom": "^16.13.0"
   }
 }
