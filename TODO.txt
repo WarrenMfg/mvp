@@ -1,2 +1,6 @@
 - Add pagination
 - Add setTimeout to continuously retrieve new quotes
+- Become independent of billboard npm package--scrape website on my own
+- Add more charts and allow user to select a genre
+- Fix loading gif to turn off when user clicks Pep, but data is still being fetched
+- Impement STANDS4 API
