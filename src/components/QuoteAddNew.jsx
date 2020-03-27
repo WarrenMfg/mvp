@@ -72,7 +72,7 @@ class QuoteAddNew extends React.Component {
         </div>
 
         <div css={CSS.divBottom}>
-          <p css={CSS.student}>Student: </p>
+          <p css={CSS.student}>Name: </p>
           <input
             type="text"
             id="student"
@@ -83,11 +83,11 @@ class QuoteAddNew extends React.Component {
             onChange={this.handleChange}
           />
 
-          <p css={CSS.cohort}>Cohort: </p>
+          <p css={CSS.cohort}>Team: </p>
           <input
             type="text"
             id="cohort"
-            placeholder="HRR43"
+            placeholder="DevOps"
             required
             css={CSS.cohortInput}
             value={this.state.cohort}
