@@ -34,7 +34,7 @@
     "eslint-plugin-react": "^7.18.3",
     "nodemon": "^2.0.2",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^10.0.27",
