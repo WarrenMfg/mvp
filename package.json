@@ -41,7 +41,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "billboard-top-100": "^2.5.8",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongodb": "^3.5.4",
     "morgan": "^1.9.1",
     "react": "^16.13.0",
